@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InstagramViewer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="popular_photos_caption">Popular Photos</string>
+    <string name="caption_default_text">This is a default caption</string>
+    <string name="username_default_text">Username</string>
+    <string name="likes_count">Likes count</string>
+    <string name="location_name">Location name</string>
+    <string name="profilePic_contentDesc">Profile picture</string>
+    <string name="imgPhoto_contentDesc">Instagram photo</string>
+    <string name="likesImg_contentDesc">Heart</string>
+    <string name="createDate_default">Two weeks ago</string>
+
+</resources>
