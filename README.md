@@ -30,7 +30,7 @@ original feature set: 13 hours spent in total
 
 * This is my initial submission to be graded. I am planning to do another submit with the rest of the advanced features implemented.
 * Most of my time was spent working on the layout, to have my imageview correctly rendere to the same size as my instagam photo
-
+* The UI could still use some work, like making the user profile picture round, adding a clock image before the elapsed time, and perhaps some adjustments on the instagram photo
 
 LICEcap demo:
 ![LICEcapimage](https://github.com/martasmith/InstagramViewer/blob/master/codepath_week1_v1.gif)
