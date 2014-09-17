@@ -14,7 +14,7 @@ original feature set: 13 hours spent in total
  - [x] User can scroll through current popular photos from Instagram 
  - [x] For each photo user can see the following details
    - [x] Graphic, Caption, Username
-   - [x] Relative timestamp, like count, user profile image
+   - [x] Relative timestamp, like count, user profile image (optional)
 
 *Advanced:*
 
