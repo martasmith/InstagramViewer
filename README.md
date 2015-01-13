@@ -27,9 +27,10 @@ Extended feaures as of 1/12/2015: 7 hours
  - [ ] Improve the user interface through styling and coloring
  - [ ] Allow user to view all comments for an image within a separate screen or a dialog fragment
 
-*Screenshot:*
+**Screenshot:**
+
 ![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
 
+**Demo:**
 
-**LICEcap demo:**
 ![LICEcapimage](https://github.com/martasmith/InstagramViewer/blob/master/codepath_week1_v1.gif)
