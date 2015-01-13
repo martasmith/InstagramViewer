@@ -29,7 +29,7 @@ Extended feaures as of 1/12/2015: 7 hours
 
 
 **Current screenshot: **
-![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
+
 
 
 **LICEcap demo:**
