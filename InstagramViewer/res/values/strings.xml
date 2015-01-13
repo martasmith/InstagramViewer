@@ -10,6 +10,7 @@
     <string name="likes_count">Likes count</string>
     <string name="location_name">Location name</string>
     <string name="profilePic_contentDesc">Profile picture</string>
+     <string name="clockImg_contentDesc">Clock picture</string>
     <string name="imgPhoto_contentDesc">Instagram photo</string>
     <string name="likesImg_contentDesc">Heart</string>
     <string name="createDate_default">Two weeks ago</string>

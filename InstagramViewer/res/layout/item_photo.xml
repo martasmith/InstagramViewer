@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" 
-    android:background="#FFFFFF">
-    
-   <ImageView
-       android:id="@+id/imgProfilePic"
-       android:layout_width="50dp"
-       android:layout_height="50dp"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentTop="true"
-       android:adjustViewBounds="true"
-       android:contentDescription="@string/profilePic_contentDesc"
-       android:padding="5dp"
-       android:scaleType="fitCenter"
-       android:src="@drawable/ic_launcher" />
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF" >
+
+    <ImageView
+        android:id="@+id/imgProfilePic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/profilePic_contentDesc"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher" />
 
     <ImageView
         android:id="@+id/imgPhoto"
@@ -35,11 +35,11 @@
         android:layout_marginBottom="14dp"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/imgProfilePic"
+        android:text="@string/username_default_text"
         android:textColor="#206199"
-        android:textStyle="bold"
-        android:typeface="serif"
         android:textSize="13sp"
-        android:text="@string/username_default_text" />
+        android:textStyle="bold"
+        android:typeface="serif" />
 
     <ImageView
         android:id="@+id/imgLikes"
@@ -55,13 +55,13 @@
         android:id="@+id/tvLikesCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imgLikes"
         android:layout_below="@+id/imgPhoto"
+        android:layout_toRightOf="@+id/imgLikes"
+        android:text="@string/likes_count"
         android:textColor="#206199"
-        android:textStyle="bold"
-        android:typeface="serif"
         android:textSize="13sp"
-        android:text="@string/likes_count" />
+        android:textStyle="bold"
+        android:typeface="serif" />
 
     <TextView
         android:id="@+id/tvCaption"
@@ -71,11 +71,11 @@
         android:layout_below="@+id/imgLikes"
         android:ellipsize="end"
         android:maxLines="3"
-        android:paddingLeft="5dp"
-        android:typeface="serif"
-        android:textSize="13sp"
         android:paddingBottom="10dp"
-        android:text="@string/caption_default_text" />
+        android:paddingLeft="5dp"
+        android:text="@string/caption_default_text"
+        android:textSize="13sp"
+        android:typeface="serif" />
 
     <TextView
         android:id="@+id/tv_createDate"
@@ -85,8 +85,17 @@
         android:layout_alignBottom="@+id/tvUsername"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
-        android:typeface="serif"
+        android:text="@string/createDate_default"
         android:textSize="13sp"
-        android:text="@string/createDate_default" />
- 
+        android:typeface="serif" />
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignBottom="@+id/tv_createDate"
+        android:layout_toLeftOf="@+id/tv_createDate"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/clockImg_contentDesc"
+        android:src="@drawable/ic_clock" />
+
 </RelativeLayout>

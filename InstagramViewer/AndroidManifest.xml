@@ -13,9 +13,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CustomActionBarTheme" >
         <activity
-            android:name=".PhotosActivity"
+            android:name="com.codepath.instagramviewer.activity.PhotosActivity"
             android:label="@string/popular_photos_caption" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

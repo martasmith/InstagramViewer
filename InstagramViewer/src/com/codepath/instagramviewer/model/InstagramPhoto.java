@@ -1,4 +1,4 @@
-package com.codepath.instagramviewer;
+package com.codepath.instagramviewer.model;
 
 public class InstagramPhoto {
 	
