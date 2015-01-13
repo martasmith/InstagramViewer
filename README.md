@@ -1,11 +1,12 @@
 InstagramViewer
 ===============
 
-This app displays the most popular Instagram photos
+This app displays the most popular Instagram photos.
 
 Time spent:
 
-original feature set: 13 hours spent in total
+Original feature set: 13 hours spent in total
+Extended feaures as of 1/12/2015: 7 hours
 
 **Completed user stories:**
 
@@ -19,18 +20,17 @@ original feature set: 13 hours spent in total
 *Advanced:*
 
  - [x] Display each photo with the same style and proportions as the real instagram 
- 
-*Advanced features not yet implemented:*
+ - [x] Add pull-to-refresh for popular stream with SwipeRefreshLayout
+ - [ ] Show latest comment for each photo (bonus: show last two comments)
+ - [ ] Display each user profile image using a CircularImageView
+ - [ ] Display a nice default placeholder graphic for each image during loading (read more about Picasso)
+ - [ ] Improve the user interface through styling and coloring
+ - [ ] Allow user to view all comments for an image within a separate screen or a dialog fragment
 
-- [ ] Add pull-to-refresh for popular stream with SwipeRefreshLayout
-- [ ] Show latest comment for each photo (bonus: show last two comments)
+
+**Current screenshot: **
+![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
 
 
-**Notes:**
-
-* This is my initial submission to be graded. I am planning to do another submit with the rest of the advanced features implemented.
-* Most of my time was spent working on the layout, to have my imageview correctly rendere to the same size as my instagam photo
-* The UI could still use some work, like making the user profile picture round, adding a clock image before the elapsed time, and perhaps some adjustments on the instagram photo
-
-LICEcap demo:
+**LICEcap demo:**
 ![LICEcapimage](https://github.com/martasmith/InstagramViewer/blob/master/codepath_week1_v1.gif)
