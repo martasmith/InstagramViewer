@@ -21,10 +21,10 @@ Extended feaures as of 1/12/2015: 7 hours
 
  - [x] Display each photo with the same style and proportions as the real instagram 
  - [x] Add pull-to-refresh for popular stream with SwipeRefreshLayout
+ - [x] Display each user profile image using a CircularImageView
+ - [x] Display a nice default placeholder graphic for each image during loading (read more about Picasso)
+ - [x] Improve the user interface through styling and coloring
  - [ ] Show latest comment for each photo (bonus: show last two comments)
- - [ ] Display each user profile image using a CircularImageView
- - [ ] Display a nice default placeholder graphic for each image during loading (read more about Picasso)
- - [ ] Improve the user interface through styling and coloring
  - [ ] Allow user to view all comments for an image within a separate screen or a dialog fragment
 
 **Screenshot:**
