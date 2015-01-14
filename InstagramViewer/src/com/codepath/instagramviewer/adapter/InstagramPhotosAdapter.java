@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.codepath.instagramviewer.R;
 import com.codepath.instagramviewer.model.InstagramPhoto;
+import com.codepath.instagramviewer.util.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
@@ -48,8 +49,16 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         imgLikes.setImageResource(R.drawable.ic_likes);
 
         // Format timestamp into elapsed time
-        CharSequence timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.createdTime*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
-        tvCreateDate.setText(timePassed);
+        String timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.createdTime*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)+"";
+        // print only digits and 1st char of time unit
+        String[] timeParts = timePassed.split(" ");
+        if (timeParts[0].equals("in")) {
+            //in 12 hours
+            tvCreateDate.setText(timeParts[1] + timeParts[2].substring(0,1));
+        } else {
+            //12 hour ago
+            tvCreateDate.setText(timeParts[0] + timeParts[1].substring(0,1));
+        }
 
         tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + currentPhoto.username
                 + "  " + "</b></font>" + "<font color=\"#000000\">" + currentPhoto.caption + "</font>"));
@@ -61,12 +70,11 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         // In the background, send a network request to the url, download the image bytes,
         // convert into bitmap, resize images, insert bitmap into imageview
         //main image
-        Picasso.with(getContext()).load(currentPhoto.imageUrl).into(imgPhoto);
+        Picasso.with(getContext()).load(currentPhoto.imageUrl).placeholder(R.drawable.ic_placeholder).into(imgPhoto);
         //profile photo
-        Picasso.with(getContext()).load(currentPhoto.profilePicUrl).into(imgProfilePic);
+        Picasso.with(getContext()).load(currentPhoto.profilePicUrl).transform(new CircleTransform()).into(imgProfilePic);
         // Return view for that data item
         return convertView;
 
     }
-
 }
