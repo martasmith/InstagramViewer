@@ -3,7 +3,6 @@ package com.codepath.instagramviewer.activity;
 import java.util.ArrayList;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +15,7 @@ import android.widget.ListView;
 import com.codepath.instagramviewer.R;
 import com.codepath.instagramviewer.adapter.InstagramPhotosAdapter;
 import com.codepath.instagramviewer.model.InstagramPhoto;
+import com.codepath.instagramviewer.model.JSONProcessor;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -79,45 +79,13 @@ public class PhotosActivity extends Activity {
                 //Log.i("martas", response.toString());
 
                 swipeContainer.setRefreshing(false);
-                JSONArray photosJSON = null;
                 aPhotos.clear();
 
-
                 try {
-                    //photos.clear();
-                    photosJSON = response.getJSONArray("data");
-                    //iterate through each element in the array and extract needed data
-                    for(int i=0; i < photosJSON.length(); i++) {
-                        JSONObject photoJSON = photosJSON.getJSONObject(i);
-                        InstagramPhoto photo = new InstagramPhoto();
-
-                        if (photoJSON.optJSONObject("user") != null)
-                        {
-                            photo.username = photoJSON.getJSONObject("user").getString("username");
-                            photo.profilePicUrl = photoJSON.getJSONObject("user").getString("profile_picture");
-                        }
-                        if (photoJSON.optJSONObject("images").optJSONObject("standard_resolution") != null)
-                        {
-                            photo.imageUrl = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
-                            photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
-                        }
-                        if (photoJSON.optJSONObject("caption") != null && photoJSON.getJSONObject("caption").has("text"))
-                        {
-                            photo.caption = photoJSON.getJSONObject("caption").getString("text");
-                        }
-                        if (photoJSON.optJSONObject("likes") != null)
-                        {
-                            photo.likesCount = photoJSON.getJSONObject("likes").getInt("count");
-                        }
-
-                        photo.createdTime = photoJSON.optLong("created_time");
-
-                        photos.add(photo);
-                    }
-                    // Notify adapter to populate new changes to the listView
+                    photos = JSONProcessor.fetchJSONResponse(photos, response);
                     aPhotos.notifyDataSetChanged();
                 } catch(JSONException e) {
-                    //if parsing fals,print to stacktrace
+                    //if parsing fails,print to stack trace
                     e.printStackTrace();
 
                 }
@@ -131,5 +99,4 @@ public class PhotosActivity extends Activity {
 
         });
     }
-
 }

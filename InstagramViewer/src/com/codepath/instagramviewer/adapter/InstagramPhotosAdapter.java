@@ -44,12 +44,12 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ImageView imgLikes = (ImageView) convertView.findViewById(R.id.imgLikes);
 
         //Populate the subviews with the correct data
-        tvUsername.setText(currentPhoto.username);
-        tvLikesCount.setText(""+currentPhoto.likesCount+" likes");
+        tvUsername.setText(currentPhoto.getUsername());
+        tvLikesCount.setText(""+currentPhoto.getLikesCount() +" likes");
         imgLikes.setImageResource(R.drawable.ic_likes);
 
         // Format timestamp into elapsed time
-        String timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.createdTime*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)+"";
+        String timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.getCreatedTime()*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)+"";
         // print only digits and 1st char of time unit
         String[] timeParts = timePassed.split(" ");
         if (timeParts[0].equals("in")) {
@@ -60,8 +60,8 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
             tvCreateDate.setText(timeParts[0] + timeParts[1].substring(0,1));
         }
 
-        tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + currentPhoto.username
-                + "  " + "</b></font>" + "<font color=\"#000000\">" + currentPhoto.caption + "</font>"));
+        tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + currentPhoto.getUsername()
+                + "  " + "</b></font>" + "<font color=\"#000000\">" + currentPhoto.getCaption() + "</font>"));
 
         //Reset the image from the recycled view
         imgPhoto.setImageResource(0);
@@ -70,9 +70,9 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         // In the background, send a network request to the url, download the image bytes,
         // convert into bitmap, resize images, insert bitmap into imageview
         //main image
-        Picasso.with(getContext()).load(currentPhoto.imageUrl).placeholder(R.drawable.ic_placeholder).into(imgPhoto);
+        Picasso.with(getContext()).load(currentPhoto.getImageUrl()).placeholder(R.drawable.ic_placeholder).into(imgPhoto);
         //profile photo
-        Picasso.with(getContext()).load(currentPhoto.profilePicUrl).transform(new CircleTransform()).into(imgProfilePic);
+        Picasso.with(getContext()).load(currentPhoto.getProfilePicUrl()).transform(new CircleTransform()).into(imgProfilePic);
         // Return view for that data item
         return convertView;
 
