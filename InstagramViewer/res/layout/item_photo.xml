@@ -16,17 +16,6 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher" />
 
-    <ImageView
-        android:id="@+id/imgPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imgProfilePic"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/imgPhoto_contentDesc"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_launcher" />
-
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
@@ -40,6 +29,39 @@
         android:textSize="13sp"
         android:textStyle="bold"
         android:typeface="serif" />
+
+    <ImageView
+        android:id="@+id/imgClock"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignBottom="@+id/tv_createDate"
+        android:layout_toLeftOf="@+id/tv_createDate"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/clockImg_contentDesc"
+        android:src="@drawable/ic_clock" />
+
+    <TextView
+        android:id="@+id/tv_createDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvUsername"
+        android:layout_alignBottom="@+id/tvUsername"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:text="@string/createDate_default"
+        android:textSize="13sp"
+        android:typeface="serif" />
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imgProfilePic"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/imgPhoto_contentDesc"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher" />
 
     <ImageView
         android:id="@+id/imgLikes"
@@ -71,31 +93,40 @@
         android:layout_below="@+id/imgLikes"
         android:ellipsize="end"
         android:maxLines="3"
-        android:paddingBottom="10dp"
         android:paddingLeft="5dp"
         android:text="@string/caption_default_text"
         android:textSize="13sp"
         android:typeface="serif" />
 
     <TextView
-        android:id="@+id/tv_createDate"
+        android:id="@+id/tvComment1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvUsername"
-        android:layout_alignBottom="@+id/tvUsername"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:text="@string/createDate_default"
-        android:textSize="13sp"
-        android:typeface="serif" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvCaption"
+        android:paddingLeft="5dp"
+        android:text="@string/first_comment"
+        android:textSize="13sp" />
 
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_alignBottom="@+id/tv_createDate"
-        android:layout_toLeftOf="@+id/tv_createDate"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/clockImg_contentDesc"
-        android:src="@drawable/ic_clock" />
+    <TextView
+        android:id="@+id/tvComment2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvComment1"
+        android:paddingLeft="5dp"
+        android:text="@string/second_comment"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tvCommentMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvComment2"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
+        android:text="@string/all_comments"
+        android:textSize="13sp" />
 
 </RelativeLayout>

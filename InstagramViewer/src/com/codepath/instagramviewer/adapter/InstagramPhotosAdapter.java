@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.codepath.instagramviewer.R;
 import com.codepath.instagramviewer.model.InstagramPhoto;
+import com.codepath.instagramviewer.model.InstagramPhotoComment;
 import com.codepath.instagramviewer.util.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -42,11 +43,37 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
         ImageView imgProfilePic = (ImageView) convertView.findViewById(R.id.imgProfilePic);
         ImageView imgLikes = (ImageView) convertView.findViewById(R.id.imgLikes);
+        TextView firstComment = (TextView) convertView.findViewById(R.id.tvComment1);
+        firstComment.setVisibility(View.GONE);
+        TextView secondComment = (TextView) convertView.findViewById(R.id.tvComment2);
+        secondComment.setVisibility(View.GONE);
+        TextView allComments = (TextView) convertView.findViewById(R.id.tvCommentMore);
+        allComments.setVisibility(View.GONE);
 
         //Populate the subviews with the correct data
         tvUsername.setText(currentPhoto.getUsername());
         tvLikesCount.setText(""+currentPhoto.getLikesCount() +" likes");
         imgLikes.setImageResource(R.drawable.ic_likes);
+
+        //populate the first and second comment with the first and second element of the comments arrayList
+        List<InstagramPhotoComment> comments = currentPhoto.getComments();
+
+        if (comments.size() > 0) {
+            firstComment.setText(Html.fromHtml("<font color=\"#206199\"><b>" +comments.get(0).getUserName()
+                    + "  " + "</b></font>" + "<font color=\"#000000\">" + comments.get(0).getCommentText()+ "</font>"));
+            firstComment.setVisibility(View.VISIBLE);
+        }
+
+        if (comments.size() > 1) {
+            secondComment.setText(Html.fromHtml("<font color=\"#206199\"><b>" + comments.get(1).getUserName()
+                    + "  " + "</b></font>" + "<font color=\"#000000\">" + comments.get(1).getCommentText()+ "</font>"));
+            secondComment.setVisibility(View.VISIBLE);
+        }
+
+        if (comments.size() > 2) {
+            allComments.setText("View all comments");
+            allComments.setVisibility(View.VISIBLE);
+        }
 
         // Format timestamp into elapsed time
         String timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.getCreatedTime()*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)+"";

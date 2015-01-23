@@ -57,7 +57,7 @@ public class JSONProcessor extends Activity {
                     if (commentJSON.has("text") && commentJSON.optJSONObject("from").has("username")) {
                         String commentText = commentJSON.getString("text");
                         String userName = commentJSON.getJSONObject("from").getString("username");
-                        comments.add(new InstagramPhotoComment(commentText, userName));
+                        comments.add(new InstagramPhotoComment(userName, commentText));
                     }
                 }
 
