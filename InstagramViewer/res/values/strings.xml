@@ -14,5 +14,8 @@
     <string name="imgPhoto_contentDesc">Instagram photo</string>
     <string name="likesImg_contentDesc">Heart</string>
     <string name="createDate_default">Two weeks ago</string>
+    <string name="first_comment">First comment</string>
+    <string name="second_comment">Second comment</string>
+    <string name="all_comments">View all comments</string>
 
 </resources>

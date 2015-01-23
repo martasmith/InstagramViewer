@@ -32,16 +32,20 @@ public final class R {
         public static final int ic_placeholder=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f090009;
-        public static final int imgLikes=0x7f090005;
-        public static final int imgPhoto=0x7f090003;
+        public static final int action_settings=0x7f09000d;
+        public static final int imgClock=0x7f090004;
+        public static final int imgLikes=0x7f090007;
+        public static final int imgPhoto=0x7f090006;
         public static final int imgProfilePic=0x7f090002;
         public static final int lvPhotos=0x7f090001;
         public static final int swipeContainer=0x7f090000;
-        public static final int tvCaption=0x7f090007;
-        public static final int tvLikesCount=0x7f090006;
-        public static final int tvUsername=0x7f090004;
-        public static final int tv_createDate=0x7f090008;
+        public static final int tvCaption=0x7f090009;
+        public static final int tvComment1=0x7f09000a;
+        public static final int tvComment2=0x7f09000b;
+        public static final int tvCommentMore=0x7f09000c;
+        public static final int tvLikesCount=0x7f090008;
+        public static final int tvUsername=0x7f090003;
+        public static final int tv_createDate=0x7f090005;
     }
     public static final class layout {
         public static final int activity_photos=0x7f030000;
@@ -52,10 +56,12 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f060002;
+        public static final int all_comments=0x7f06000f;
         public static final int app_name=0x7f060000;
         public static final int caption_default_text=0x7f060004;
         public static final int clockImg_contentDesc=0x7f060009;
         public static final int createDate_default=0x7f06000c;
+        public static final int first_comment=0x7f06000d;
         public static final int hello_world=0x7f060001;
         public static final int imgPhoto_contentDesc=0x7f06000a;
         public static final int likesImg_contentDesc=0x7f06000b;
@@ -63,6 +69,7 @@ public final class R {
         public static final int location_name=0x7f060007;
         public static final int popular_photos_caption=0x7f060003;
         public static final int profilePic_contentDesc=0x7f060008;
+        public static final int second_comment=0x7f06000e;
         public static final int username_default_text=0x7f060005;
     }
     public static final class style {
