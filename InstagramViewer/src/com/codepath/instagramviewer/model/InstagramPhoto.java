@@ -13,6 +13,8 @@ public class InstagramPhoto {
     private int likesCount;
     private String caption;
     private List<InstagramPhotoComment> comments;
+    private int commentsCount;
+    private String photoId;
 
 
     public String getProfilePicUrl() {
@@ -68,5 +70,17 @@ public class InstagramPhoto {
         } else {
             this.comments = comments;
         }
+    }
+    public int getCommentsCount() {
+        return commentsCount;
+    }
+    public void setCommentsCount(int commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+    public String getPhotoId() {
+        return photoId;
+    }
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
     }
 }

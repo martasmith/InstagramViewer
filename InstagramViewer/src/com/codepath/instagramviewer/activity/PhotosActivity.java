@@ -67,6 +67,7 @@ public class PhotosActivity extends Activity {
         lvPhotos.setAdapter(aPhotos);
     }
 
+
     private void fetchPopularPhotos() {
 
         // create the network request

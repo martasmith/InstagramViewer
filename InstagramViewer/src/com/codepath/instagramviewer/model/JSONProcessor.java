@@ -63,9 +63,11 @@ public class JSONProcessor extends Activity {
 
                 // add list of comments to the photo
                 photo.setComments(comments);
+                photo.setCommentsCount(photoJSON.getJSONObject("comments").getInt("count"));
             }
 
             photo.setCreatedTime(photoJSON.optLong("created_time"));
+            photo.setPhotoId(photoJSON.optString("id"));
 
             // add photo to the list of photos
             photoList.add(photo);
