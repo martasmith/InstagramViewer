@@ -27,10 +27,10 @@ Extended feaures as of 1/12/2015: 7 hours
  - [x] Show latest comment for each photo (bonus: show last two comments)
  - [ ] Allow user to view all comments for an image within a separate screen or a dialog fragment
 
-**Screenshot:**
+**Screenshot with all currently implemented features:**
 
 ![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
 
-**Demo:**
+**Original CodePath project Demo:**
 
 ![LICEcapimage](https://github.com/martasmith/InstagramViewer/blob/master/codepath_week1_v1.gif)
