@@ -31,6 +31,6 @@ Extended feaures as of 1/12/2015: 7 hours
 
 ![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
 
-**Original CodePath project Demo:**
+**Demo:**
 
-![LICEcapimage](https://github.com/martasmith/InstagramViewer/blob/master/codepath_week1_v1.gif)
+![LICEcapimage](https://github.com/martasmith/InstagramViewer/blob/master/InstagramViewer_demo.gif)
