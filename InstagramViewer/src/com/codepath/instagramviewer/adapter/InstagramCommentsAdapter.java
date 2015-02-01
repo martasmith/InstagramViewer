@@ -52,7 +52,6 @@ public class InstagramCommentsAdapter extends ArrayAdapter<InstagramPhotoComment
         // Format timestamp into elapsed time
         CharSequence timePassed = DateUtils.getRelativeTimeSpanString(currentComment.getCreatedTime()*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
         tvCreatedDateComment.setText(timePassed);
-        //createdDate.setText(timePassed);
 
         return convertView;
     }
