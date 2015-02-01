@@ -12,7 +12,7 @@ import android.app.Activity;
 
 public class JSONProcessor extends Activity {
 
-    public static ArrayList<InstagramPhoto> fetchJSONResponse(ArrayList<InstagramPhoto> photoList, JSONObject response) throws JSONException {
+    public static ArrayList<InstagramPhoto> fetchPhotosJSONResponse(ArrayList<InstagramPhoto> photoList, JSONObject response) throws JSONException {
 
         JSONArray photosJSON = response.getJSONArray("data");
 
@@ -77,4 +77,28 @@ public class JSONProcessor extends Activity {
         return photoList;
     }
 
+    public static ArrayList<InstagramPhotoComment> fetchCommentsJSONResponse(ArrayList<InstagramPhotoComment> comments, JSONObject response) throws JSONException {
+
+        JSONArray commentsJSON = response.getJSONArray("data");
+
+        for (int i = 0; i < commentsJSON.length(); i++) {
+
+            JSONObject commentJSON = commentsJSON.getJSONObject(i);
+            InstagramPhotoComment comment = new InstagramPhotoComment();
+
+            if (commentJSON.has("text") && commentJSON.optJSONObject("from").has("username")) {
+                comment.setCommentText(commentJSON.getString("text"));
+                comment.setUserName(commentJSON.getJSONObject("from").getString("username"));
+
+                if (commentJSON.optJSONObject("from").has("profile_picture")) {
+                    comment.setProfilePicUrl(commentJSON.getJSONObject("from").getString("profile_picture"));
+                }
+
+                comment.setCreatedTime(commentJSON.optLong("created_time",0));
+
+                comments.add(comment);
+            }
+        }
+        return comments;
+    }
 }

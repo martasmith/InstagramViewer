@@ -3,9 +3,10 @@ package com.codepath.instagramviewer.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.text.Html;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.codepath.instagramviewer.R;
+import com.codepath.instagramviewer.fragment.CommentsFragment;
 import com.codepath.instagramviewer.model.InstagramPhoto;
 import com.codepath.instagramviewer.model.InstagramPhotoComment;
 import com.codepath.instagramviewer.util.CircleTransform;
@@ -65,9 +66,6 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         //populate the first and second comment with the first and second element of the comments arrayList
         List<InstagramPhotoComment> comments = currentPhoto.getComments();
 
-        Log.d("martas", "comments size!!!: " + comments.size());
-
-
         if (currentPhoto.getCommentsCount() > 0) {
             firstComment.setText(Html.fromHtml("<font color=\"#206199\"><b>" +comments.get(0).getUserName()
                     + "  " + "</b></font>" + "<font color=\"#000000\">" + comments.get(0).getCommentText()+ "</font>"));
@@ -90,7 +88,11 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "photo id: " + currentPhoto.getPhotoId(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "photo id: " + currentPhoto.getPhotoId(), Toast.LENGTH_SHORT).show();
+                    FragmentActivity activity = (FragmentActivity)(getContext());
+                    FragmentManager fm = activity.getSupportFragmentManager();
+                    CommentsFragment commentsFragment = CommentsFragment.newInstance(currentPhoto.getPhotoId());
+                    commentsFragment.show(fm, "fragment_comments");
                 }
 
             });

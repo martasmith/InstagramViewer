@@ -6,8 +6,8 @@ import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.widget.ListView;
@@ -20,7 +20,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 
-public class PhotosActivity extends Activity {
+public class PhotosActivity extends FragmentActivity {
 
     public static final String CLIENT_ID = "71b36642630d4b73962a51613fb7c992";
     public static final String API_URL = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
@@ -83,7 +83,7 @@ public class PhotosActivity extends Activity {
                 aPhotos.clear();
 
                 try {
-                    photos = JSONProcessor.fetchJSONResponse(photos, response);
+                    photos = JSONProcessor.fetchPhotosJSONResponse(photos, response);
                     aPhotos.notifyDataSetChanged();
                 } catch(JSONException e) {
                     //if parsing fails,print to stack trace

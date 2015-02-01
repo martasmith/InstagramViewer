@@ -18,5 +18,7 @@
     <string name="second_comment">Second comment</string>
     <string name="all_comments">View all comments</string>
     <string name="ivBubble">Comment bubble</string>
+    <string name="tvUserComment">UserName: Comment</string>
+    <string name="tvCommentTime">10 minutes ago</string>
 
 </resources>
