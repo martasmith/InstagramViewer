@@ -27,9 +27,10 @@ Extended feaures as of 1/12/2015: 7 hours
  - [x] Show latest comment for each photo (bonus: show last two comments)
  - [x] Allow user to view all comments for an image within a separate screen or a dialog fragment
 
-**Screenshot with all currently implemented features:**
+**Screenshot:**
 
 ![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
+
 ![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen2.png)
 
 **Demo:**
