@@ -30,6 +30,7 @@ Extended feaures as of 1/12/2015: 7 hours
 **Screenshot with all currently implemented features:**
 
 ![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen.png)
+![Screenshot](https://github.com/martasmith/InstagramViewer/blob/master/instagram_screen2.png)
 
 **Demo:**
 
