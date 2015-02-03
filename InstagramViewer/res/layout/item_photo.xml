@@ -107,8 +107,8 @@
         android:layout_alignTop="@+id/tvComment1"
         android:layout_below="@+id/tvCaption"
         android:layout_gravity="top"
-        android:gravity="top"
         android:contentDescription="@string/ivBubble"
+        android:gravity="top"
         android:paddingLeft="2dp"
         android:src="@drawable/ic_action_comment" />
 
@@ -117,13 +117,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvCaption"
-        android:layout_toRightOf="@+id/ivCommentBubble1"      
+        android:layout_toRightOf="@+id/ivCommentBubble1"
         android:text="@string/first_comment"
         android:textSize="13sp" />
 
     <ImageView
         android:id="@+id/ivCommentBubble2"
-         android:layout_width="16dp"
+        android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/ivCommentBubble1"
@@ -138,11 +138,11 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvComment1"
         android:layout_below="@+id/tvComment1"
-        android:layout_toRightOf="@+id/ivCommentBubble2"      
+        android:layout_toRightOf="@+id/ivCommentBubble2"
         android:text="@string/second_comment"
         android:textSize="13sp" />
-    
-        <TextView
+
+    <TextView
         android:id="@+id/tvCommentMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -150,8 +150,8 @@
         android:layout_below="@+id/tvComment2"
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
-         android:textStyle="bold"
         android:text="@string/all_comments"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

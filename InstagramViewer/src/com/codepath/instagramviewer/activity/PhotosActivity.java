@@ -1,3 +1,4 @@
+
 package com.codepath.instagramviewer.activity;
 
 import java.util.ArrayList;
@@ -10,7 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.instagramviewer.R;
 import com.codepath.instagramviewer.adapter.InstagramPhotosAdapter;
@@ -19,21 +22,24 @@ import com.codepath.instagramviewer.model.JSONProcessor;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-
 public class PhotosActivity extends FragmentActivity {
 
     public static final String CLIENT_ID = "71b36642630d4b73962a51613fb7c992";
-    public static final String API_URL = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
+    public static final String API_URL = "https://api.instagram.com/v1/media/popular?client_id="
+            + CLIENT_ID;
 
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
     private SwipeRefreshLayout swipeContainer;
+    private AsyncHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
+        // create the network request
+        client = new AsyncHttpClient();
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new OnRefreshListener() {
@@ -57,27 +63,23 @@ public class PhotosActivity extends FragmentActivity {
     }
 
     private void createPhotosList() {
-        //create datasource
+        // create datasource
         photos = new ArrayList<InstagramPhoto>();
-        //create adapter and bind it to the data in arraylist
+        // create adapter and bind it to the data in arraylist
         aPhotos = new InstagramPhotosAdapter(this, photos);
-        //populate the data into the listView
+        // populate the data into the listView
         ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
         // set adapter to the listview, which triggers the population of items
         lvPhotos.setAdapter(aPhotos);
     }
 
-
     private void fetchPopularPhotos() {
 
-        // create the network request
-        AsyncHttpClient client = new AsyncHttpClient();
         // handle the successful response JSON
-        client.get(API_URL, new JsonHttpResponseHandler(){
-            //define success or failure callbacks
+        client.get(API_URL, new JsonHttpResponseHandler() {
+            // define success or failure callbacks
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                //Log.i("martas", response.toString());
 
                 swipeContainer.setRefreshing(false);
                 aPhotos.clear();
@@ -85,17 +87,19 @@ public class PhotosActivity extends FragmentActivity {
                 try {
                     photos = JSONProcessor.fetchPhotosJSONResponse(photos, response);
                     aPhotos.notifyDataSetChanged();
-                } catch(JSONException e) {
-                    //if parsing fails,print to stack trace
-                    e.printStackTrace();
-
+                } catch (JSONException e) {
+                    // if parsing fails,print to stack trace
+                    Log.e("InstagramViewer",
+                            "Error occured while processing Instagram JSON response: ", e);
                 }
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                // TODO Auto-generated method stub
-                super.onFailure(statusCode, headers, responseString, throwable);
+            public void onFailure(int statusCode, Header[] headers, String responseString,
+                    Throwable throwable) {
+                Toast.makeText(getApplicationContext(),
+                        "Error occured while trying to retrieve Instagam photo stream!",
+                        Toast.LENGTH_LONG).show();
             }
 
         });

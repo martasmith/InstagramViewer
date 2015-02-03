@@ -12,7 +12,8 @@ import android.app.Activity;
 
 public class JSONProcessor extends Activity {
 
-    public static ArrayList<InstagramPhoto> fetchPhotosJSONResponse(ArrayList<InstagramPhoto> photoList, JSONObject response) throws JSONException {
+    public static ArrayList<InstagramPhoto> fetchPhotosJSONResponse(
+            ArrayList<InstagramPhoto> photoList, JSONObject response) throws JSONException {
 
         JSONArray photosJSON = response.getJSONArray("data");
 
@@ -53,8 +54,10 @@ public class JSONProcessor extends Activity {
 
                     JSONObject commentJSON = commentsJSON.getJSONObject(j);
 
-                    // the comment should only be added to the comments if it has a userName and commentText
-                    if (commentJSON.has("text") && commentJSON.optJSONObject("from").has("username")) {
+                    // the comment should only be added to the comments if it has a userName and
+                    // commentText
+                    if (commentJSON.has("text")
+                            && commentJSON.optJSONObject("from").has("username")) {
                         String commentText = commentJSON.getString("text");
                         String userName = commentJSON.getJSONObject("from").getString("username");
                         comments.add(new InstagramPhotoComment(userName, commentText));
@@ -77,7 +80,8 @@ public class JSONProcessor extends Activity {
         return photoList;
     }
 
-    public static ArrayList<InstagramPhotoComment> fetchCommentsJSONResponse(ArrayList<InstagramPhotoComment> comments, JSONObject response) throws JSONException {
+    public static ArrayList<InstagramPhotoComment> fetchCommentsJSONResponse(
+            ArrayList<InstagramPhotoComment> comments, JSONObject response) throws JSONException {
 
         JSONArray commentsJSON = response.getJSONArray("data");
 
@@ -91,10 +95,11 @@ public class JSONProcessor extends Activity {
                 comment.setUserName(commentJSON.getJSONObject("from").getString("username"));
 
                 if (commentJSON.optJSONObject("from").has("profile_picture")) {
-                    comment.setProfilePicUrl(commentJSON.getJSONObject("from").getString("profile_picture"));
+                    comment.setProfilePicUrl(commentJSON.getJSONObject("from").getString(
+                            "profile_picture"));
                 }
 
-                comment.setCreatedTime(commentJSON.optLong("created_time",0));
+                comment.setCreatedTime(commentJSON.optLong("created_time", 0));
 
                 comments.add(comment);
             }

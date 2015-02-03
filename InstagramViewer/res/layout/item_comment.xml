@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvUserComment"
         android:layout_below="@+id/tvUserComment"
-         android:textSize="13sp"
-         android:textColor="@color/instagram_gray"
-        android:text="@string/tvCommentTime" />
+        android:text="@string/tvCommentTime"
+        android:textColor="@color/instagram_gray"
+        android:textSize="13sp" />
 
 </RelativeLayout>

@@ -1,3 +1,4 @@
+
 package com.codepath.instagramviewer.util;
 
 import android.graphics.Bitmap;
@@ -11,7 +12,6 @@ import com.squareup.picasso.Transformation;
 
 public class CircleTransform implements Transformation {
 
-
     @Override
     public String key() {
         return "rounded";
@@ -24,9 +24,11 @@ public class CircleTransform implements Transformation {
         paint.setAntiAlias(true);
         paint.setShader(new BitmapShader(source, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
 
-        Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Config.ARGB_8888);
+        Bitmap output = Bitmap
+                .createBitmap(source.getWidth(), source.getHeight(), Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
-        canvas.drawCircle(source.getWidth() / 2, source.getHeight() / 2, source.getHeight() / 2, paint);
+        canvas.drawCircle(source.getWidth() / 2, source.getHeight() / 2, source.getHeight() / 2,
+                paint);
 
         if (source != output) {
             source.recycle();

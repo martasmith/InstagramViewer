@@ -1,3 +1,4 @@
+
 package com.codepath.instagramviewer.model;
 
 public class InstagramPhotoComment {
@@ -16,7 +17,6 @@ public class InstagramPhotoComment {
         this.commentText = commentText;
     }
 
-
     public void setProfilePicUrl(String profilePicUrl) {
         this.profilePicUrl = profilePicUrl;
     }
@@ -31,7 +31,6 @@ public class InstagramPhotoComment {
 
     public InstagramPhotoComment() {
     }
-
 
     public String getUserName() {
         return userName;

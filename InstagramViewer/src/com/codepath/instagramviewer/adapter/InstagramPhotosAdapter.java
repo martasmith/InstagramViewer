@@ -1,3 +1,4 @@
+
 package com.codepath.instagramviewer.adapter;
 
 import java.util.List;
@@ -26,71 +27,93 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
     public InstagramPhotosAdapter(Context context, List<InstagramPhoto> photos) {
         super(context, android.R.layout.simple_list_item_1, photos);
-        // TODO Auto-generated constructor stub
+    }
+
+    public static class ViewHolder {
+        TextView tvUserName, tvLikesCount, tvCaption, tvCreateDate, firstComment, secondComment,
+        allComments;
+        ImageView imgPhoto, imgProfilePic, imgLikes, imgBubble1, imgBubble2;
+
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Take datasource  at position
+        // Take datasource at position
         // Get the data item
         final InstagramPhoto currentPhoto = getItem(position);
-        //Check if we are using s recycled view
+
+        ViewHolder viewHolder;
+
+        // Check if we are using s recycled view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent,
+                    false);
+            viewHolder.tvUserName = (TextView) convertView.findViewById(R.id.tvUsername);
+            viewHolder.tvLikesCount = (TextView) convertView.findViewById(R.id.tvLikesCount);
+            viewHolder.tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
+            viewHolder.tvCreateDate = (TextView) convertView.findViewById(R.id.tv_createDate);
+            viewHolder.imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
+            viewHolder.imgProfilePic = (ImageView) convertView.findViewById(R.id.imgProfilePic);
+            viewHolder.imgLikes = (ImageView) convertView.findViewById(R.id.imgLikes);
+            viewHolder.firstComment = (TextView) convertView.findViewById(R.id.tvComment1);
+            viewHolder.imgBubble1 = (ImageView) convertView.findViewById(R.id.ivCommentBubble1);
+            viewHolder.imgBubble2 = (ImageView) convertView.findViewById(R.id.ivCommentBubble2);
+            viewHolder.secondComment = (TextView) convertView.findViewById(R.id.tvComment2);
+            viewHolder.allComments = (TextView) convertView.findViewById(R.id.tvCommentMore);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        //Lookup the subview within the template
-        TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
-        TextView tvLikesCount = (TextView) convertView.findViewById(R.id.tvLikesCount);
-        TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
-        TextView tvCreateDate = (TextView) convertView.findViewById(R.id.tv_createDate);
-        ImageView imgPhoto = (ImageView) convertView.findViewById(R.id.imgPhoto);
-        ImageView imgProfilePic = (ImageView) convertView.findViewById(R.id.imgProfilePic);
-        ImageView imgLikes = (ImageView) convertView.findViewById(R.id.imgLikes);
-        ImageView imgBubble1 = (ImageView) convertView.findViewById(R.id.ivCommentBubble1);
-        imgBubble1.setVisibility(View.GONE);
-        TextView firstComment = (TextView) convertView.findViewById(R.id.tvComment1);
-        firstComment.setVisibility(View.GONE);
-        ImageView imgBubble2 = (ImageView) convertView.findViewById(R.id.ivCommentBubble2);
-        imgBubble2.setVisibility(View.GONE);
-        TextView secondComment = (TextView) convertView.findViewById(R.id.tvComment2);
-        secondComment.setVisibility(View.GONE);
-        TextView allComments = (TextView) convertView.findViewById(R.id.tvCommentMore);
-        allComments.setVisibility(View.GONE);
+        // Exclude all conditional images and text from the view for now
+        viewHolder.imgBubble1.setVisibility(View.GONE);
+        viewHolder.firstComment.setVisibility(View.GONE);
+        viewHolder.imgBubble2.setVisibility(View.GONE);
+        viewHolder.secondComment.setVisibility(View.GONE);
+        viewHolder.allComments.setVisibility(View.GONE);
 
-        //Populate the subviews with the correct data
-        tvUsername.setText(currentPhoto.getUsername());
-        tvLikesCount.setText(""+currentPhoto.getLikesCount() +" likes");
-        imgLikes.setImageResource(R.drawable.ic_likes);
+        // Populate the subviews with the correct data
+        viewHolder.tvUserName.setText(currentPhoto.getUsername());
+        viewHolder.tvLikesCount.setText("" + currentPhoto.getLikesCount() + " likes");
+        viewHolder.imgLikes.setImageResource(R.drawable.ic_likes);
 
-        //populate the first and second comment with the first and second element of the comments arrayList
+        // populate the first and second comment with the first and second element of the comments
+        // arrayList
         List<InstagramPhotoComment> comments = currentPhoto.getComments();
 
         if (currentPhoto.getCommentsCount() > 0) {
-            firstComment.setText(Html.fromHtml("<font color=\"#206199\"><b>" +comments.get(0).getUserName()
-                    + "  " + "</b></font>" + "<font color=\"#000000\">" + comments.get(0).getCommentText()+ "</font>"));
-            firstComment.setVisibility(View.VISIBLE);
-            imgBubble1.setVisibility(View.VISIBLE);
+            viewHolder.firstComment.setText(Html.fromHtml("<font color=\"#206199\"><b>"
+                    + comments.get(0).getUserName()
+                    + "  " + "</b></font>" + "<font color=\"#000000\">"
+                    + comments.get(0).getCommentText() + "</font>"));
+            viewHolder.firstComment.setVisibility(View.VISIBLE);
+            viewHolder.imgBubble1.setVisibility(View.VISIBLE);
         }
 
         if (comments.size() > 1) {
-            secondComment.setText(Html.fromHtml("<font color=\"#206199\"><b>" + comments.get(1).getUserName()
-                    + "  " + "</b></font>" + "<font color=\"#000000\">" + comments.get(1).getCommentText()+ "</font>"));
-            secondComment.setVisibility(View.VISIBLE);
-            imgBubble2.setVisibility(View.VISIBLE);
+            viewHolder.secondComment.setText(Html.fromHtml("<font color=\"#206199\"><b>"
+                    + comments.get(1).getUserName()
+                    + "  " + "</b></font>" + "<font color=\"#000000\">"
+                    + comments.get(1).getCommentText() + "</font>"));
+            viewHolder.secondComment.setVisibility(View.VISIBLE);
+            viewHolder.imgBubble2.setVisibility(View.VISIBLE);
         }
 
         if (comments.size() > 2) {
-            allComments.setText(Html.fromHtml("<font color=\"#f27a3d\"><b>View all " + currentPhoto.getCommentsCount() + " comments</b></font>"));
-            allComments.setVisibility(View.VISIBLE);
+            viewHolder.allComments.setText(Html.fromHtml("<font color=\"#f27a3d\"><b>View all "
+                    + currentPhoto.getCommentsCount() + " comments</b></font>"));
+            viewHolder.allComments.setVisibility(View.VISIBLE);
 
-            allComments.setOnClickListener(new OnClickListener() {
+            viewHolder.allComments.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    FragmentActivity activity = (FragmentActivity)(getContext());
+                    FragmentActivity activity = (FragmentActivity) (getContext());
                     FragmentManager fm = activity.getSupportFragmentManager();
-                    CommentsFragment commentsFragment = CommentsFragment.newInstance(currentPhoto.getPhotoId(),currentPhoto.getUsername(),currentPhoto.getCaption());
+                    CommentsFragment commentsFragment = CommentsFragment.newInstance(
+                            currentPhoto.getPhotoId(), currentPhoto.getUsername(),
+                            currentPhoto.getCaption());
                     commentsFragment.show(fm, "fragment_comments");
                 }
 
@@ -98,35 +121,40 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         }
 
         // Format timestamp into elapsed time
-        String timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.getCreatedTime()*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)+"";
+        String timePassed = DateUtils.getRelativeTimeSpanString(
+                currentPhoto.getCreatedTime() * 1000, System.currentTimeMillis(),
+                DateUtils.SECOND_IN_MILLIS)
+                + "";
         // print only digits and 1st char of time unit
         String[] timeParts = timePassed.split(" ");
         // Apparently, we have some malformed timestrings returned once in a while
-        //TODO: debug by printing full time and each substring for each photo
         if (timeParts.length >= 2) {
             if (timeParts[0].equals("in")) {
-                //in 12 hours
-                tvCreateDate.setText(timeParts[1] + timeParts[2].substring(0,1));
-            } else  {
-                //12 hours ago
-                tvCreateDate.setText(timeParts[0] + timeParts[1].substring(0,1));
+                // in 12 hours
+                viewHolder.tvCreateDate.setText(timeParts[1] + timeParts[2].substring(0, 1));
+            } else {
+                // 12 hours ago
+                viewHolder.tvCreateDate.setText(timeParts[0] + timeParts[1].substring(0, 1));
             }
         }
 
+        viewHolder.tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>"
+                + currentPhoto.getUsername()
+                + "  " + "</b></font>" + "<font color=\"#000000\">" + currentPhoto.getCaption()
+                + "</font>"));
 
-        tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + currentPhoto.getUsername()
-                + "  " + "</b></font>" + "<font color=\"#000000\">" + currentPhoto.getCaption() + "</font>"));
-
-        //Reset the image from the recycled view
-        imgPhoto.setImageResource(0);
-        imgProfilePic.setImageResource(0);
-        //Ask for the photo to be added to the imageview based on the photo url
+        // Reset the image from the recycled view
+        viewHolder.imgPhoto.setImageResource(0);
+        viewHolder.imgProfilePic.setImageResource(0);
+        // Ask for the photo to be added to the imageview based on the photo url
         // In the background, send a network request to the url, download the image bytes,
         // convert into bitmap, resize images, insert bitmap into imageview
-        //main image
-        Picasso.with(getContext()).load(currentPhoto.getImageUrl()).placeholder(R.drawable.ic_placeholder).into(imgPhoto);
-        //profile photo
-        Picasso.with(getContext()).load(currentPhoto.getProfilePicUrl()).transform(new CircleTransform()).into(imgProfilePic);
+        // main image
+        Picasso.with(getContext()).load(currentPhoto.getImageUrl())
+        .placeholder(R.drawable.ic_placeholder).into(viewHolder.imgPhoto);
+        // profile photo
+        Picasso.with(getContext()).load(currentPhoto.getProfilePicUrl())
+        .transform(new CircleTransform()).into(viewHolder.imgProfilePic);
         // Return view for that data item
         return convertView;
 

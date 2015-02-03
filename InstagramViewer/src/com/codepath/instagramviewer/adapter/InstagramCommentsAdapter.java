@@ -1,3 +1,4 @@
+
 package com.codepath.instagramviewer.adapter;
 
 import java.util.List;
@@ -21,41 +22,55 @@ public class InstagramCommentsAdapter extends ArrayAdapter<InstagramPhotoComment
 
     public InstagramCommentsAdapter(Context context, List<InstagramPhotoComment> objects) {
         super(context, android.R.layout.simple_list_item_1, objects);
-        // TODO Auto-generated constructor stub
+    }
+
+    public static class ViewHolder {
+        TextView tvUserComment, tvCreatedDateComment;
+        ImageView ivProfilePic;
+
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         InstagramPhotoComment currentComment = getItem(position);
-        //Check if we are using s recycled view
+
+        ViewHolder viewHolder;
+
+        // Check if we are using s recycled view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_comment, parent, false);
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_comment, parent,
+                    false);
+            viewHolder.ivProfilePic = (ImageView) convertView.findViewById(R.id.ivBubbleComments);
+            viewHolder.tvUserComment = (TextView) convertView.findViewById(R.id.tvUserComment);
+            viewHolder.tvCreatedDateComment = (TextView) convertView
+                    .findViewById(R.id.tvCreatedDateComment);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ImageView ivProfilePic = (ImageView) convertView.findViewById(R.id.ivBubbleComments);
-        TextView tvUserComment = (TextView) convertView.findViewById(R.id.tvUserComment);
-        TextView tvCreatedDateComment = (TextView) convertView.findViewById(R.id.tvCreatedDateComment);
-
-        // populate subviews with data
-
-        //profile picture
-        //Reset the image from the recycled view
-        ivProfilePic.setImageResource(0);
-        //profile photo
-        Picasso.with(getContext()).load(currentComment.getProfilePicUrl()).placeholder(R.drawable.ic_profile_placeholder).transform(new CircleTransform()).into(ivProfilePic);
+        // Reset the image from the recycled view
+        viewHolder.ivProfilePic.setImageResource(0);
+        // profile photo
+        Picasso.with(getContext()).load(currentComment.getProfilePicUrl())
+        .placeholder(R.drawable.ic_profile_placeholder).transform(new CircleTransform())
+        .into(viewHolder.ivProfilePic);
 
         // username and comment
-        tvUserComment.setText(Html.fromHtml("<font color=\"#206199\"><b>" + currentComment.getUserName()
-                + "  " + "</b></font>" + "<font color=\"#000000\">" + currentComment.getCommentText() + "</font>"));
+        viewHolder.tvUserComment.setText(Html.fromHtml("<font color=\"#206199\"><b>"
+                + currentComment.getUserName()
+                + "  " + "</b></font>" + "<font color=\"#000000\">"
+                + currentComment.getCommentText() + "</font>"));
 
         // Format timestamp into elapsed time
-        CharSequence timePassed = DateUtils.getRelativeTimeSpanString(currentComment.getCreatedTime()*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
-        tvCreatedDateComment.setText(timePassed);
+        CharSequence timePassed = DateUtils.getRelativeTimeSpanString(
+                currentComment.getCreatedTime() * 1000, System.currentTimeMillis(),
+                DateUtils.SECOND_IN_MILLIS);
+        viewHolder.tvCreatedDateComment.setText(timePassed);
 
         return convertView;
     }
-
-
 
 }

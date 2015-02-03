@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- the theme applied to the application or activity -->
     <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:typeface">serif</item>
@@ -7,7 +8,8 @@
     </style>
 
     <!-- ActionBar styles -->
-    <style name = "MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/instagram_blue</item>
     </style>
+
 </resources>

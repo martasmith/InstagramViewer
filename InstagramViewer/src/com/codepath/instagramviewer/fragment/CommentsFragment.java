@@ -1,3 +1,4 @@
+
 package com.codepath.instagramviewer.fragment;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.instagramviewer.R;
 import com.codepath.instagramviewer.adapter.InstagramCommentsAdapter;
@@ -34,8 +36,9 @@ public class CommentsFragment extends DialogFragment {
     private InstagramCommentsAdapter aComments;
     private ListView lvComments;
     private Button closeBtn;
+    private AsyncHttpClient client;
 
-    private String apiUrl;
+    private String apiUrl, userId, commentText;
 
     public CommentsFragment() {
         // TODO Auto-generated constructor stub
@@ -54,19 +57,21 @@ public class CommentsFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comments, container);
-        //testDisplay = (TextView) view.findViewById(R.id.tvTest);
-        String photoId = getArguments().getString("photoId", "0");
-        String userId = getArguments().getString("userId");
-        String commentText = getArguments().getString("commentText");
+        photoId = getArguments().getString("photoId", "0");
+        // userId and commentText is pulled in for creating a custom title for the dialogFragment at
+        // some later point
+        userId = getArguments().getString("userId");
+        commentText = getArguments().getString("commentText");
         apiUrl = API_URL_BASE + photoId + API_URL_END;
 
-        //TODO: try to style the title to output username: commentText
-        //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        //getDialog().setStyle(style, theme));
+        // TODO: try to style the title to output username: commentText
+        // getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        // getDialog().setStyle(style, theme));
         getDialog().setTitle("All comments");
 
         lvComments = (ListView) view.findViewById(R.id.lvComments);
         closeBtn = (Button) view.findViewById(R.id.btnBack);
+        client = new AsyncHttpClient();
         createCommentsList();
         fetchPhotoComments();
         setupBtnClose();
@@ -74,9 +79,9 @@ public class CommentsFragment extends DialogFragment {
     }
 
     private void createCommentsList() {
-        //create datasource
+        // create datasource
         comments = new ArrayList<InstagramPhotoComment>();
-        //create adapter and bind it to the data in arraylist
+        // create adapter and bind it to the data in arraylist
         aComments = new InstagramCommentsAdapter(getActivity(), comments);
         // set adapter to the listview, which triggers the population of items
         lvComments.setAdapter(aComments);
@@ -85,20 +90,18 @@ public class CommentsFragment extends DialogFragment {
     private void fetchPhotoComments() {
         Log.d("martas", "inside fetchPhotoComments");
         Log.d("martas", "API URL: " + apiUrl);
-        AsyncHttpClient client = new AsyncHttpClient();
         client.get(apiUrl, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
-
                 try {
                     comments = JSONProcessor.fetchCommentsJSONResponse(comments, response);
                     aComments.notifyDataSetChanged();
-                } catch(JSONException e) {
-                    //if parsing fails,print to stack trace
-                    e.printStackTrace();
-
+                } catch (JSONException e) {
+                    // if parsing fails,print error
+                    Log.e("InstagramViewer",
+                            "Error occured while processing Instagram JSON response: ", e);
                 }
             }
 
@@ -107,7 +110,9 @@ public class CommentsFragment extends DialogFragment {
                     JSONObject errorResponse) {
                 // TODO Auto-generated method stub
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                // we need a toast here, that's all!
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Error occured while trying to retrieve Instagam photo stream!",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
