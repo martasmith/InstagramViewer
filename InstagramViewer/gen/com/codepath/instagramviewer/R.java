@@ -26,35 +26,37 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_action_comment=0x7f020000;
-        public static final int ic_clock=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int ic_likes=0x7f020003;
-        public static final int ic_map_pin=0x7f020004;
-        public static final int ic_placeholder=0x7f020005;
-        public static final int ic_profile_placeholder=0x7f020006;
+        public static final int buttonshape=0x7f020000;
+        public static final int ic_action_comment=0x7f020001;
+        public static final int ic_clock=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int ic_likes=0x7f020004;
+        public static final int ic_map_pin=0x7f020005;
+        public static final int ic_placeholder=0x7f020006;
+        public static final int ic_profile_placeholder=0x7f020007;
     }
     public static final class id {
-        public static final int action_settings=0x7f090013;
-        public static final int imgClock=0x7f090008;
-        public static final int imgLikes=0x7f09000b;
-        public static final int imgPhoto=0x7f09000a;
-        public static final int imgProfilePic=0x7f090006;
-        public static final int ivBubbleComments=0x7f090003;
-        public static final int ivCommentBubble1=0x7f09000e;
-        public static final int ivCommentBubble2=0x7f090010;
+        public static final int action_settings=0x7f090014;
+        public static final int btnBack=0x7f090003;
+        public static final int imgClock=0x7f090009;
+        public static final int imgLikes=0x7f09000c;
+        public static final int imgPhoto=0x7f09000b;
+        public static final int imgProfilePic=0x7f090007;
+        public static final int ivBubbleComments=0x7f090004;
+        public static final int ivCommentBubble1=0x7f09000f;
+        public static final int ivCommentBubble2=0x7f090011;
         public static final int lvComments=0x7f090002;
         public static final int lvPhotos=0x7f090001;
         public static final int swipeContainer=0x7f090000;
-        public static final int tvCaption=0x7f09000d;
-        public static final int tvComment1=0x7f09000f;
-        public static final int tvComment2=0x7f090011;
-        public static final int tvCommentMore=0x7f090012;
-        public static final int tvCreatedDateComment=0x7f090005;
-        public static final int tvLikesCount=0x7f09000c;
-        public static final int tvUserComment=0x7f090004;
-        public static final int tvUsername=0x7f090007;
-        public static final int tv_createDate=0x7f090009;
+        public static final int tvCaption=0x7f09000e;
+        public static final int tvComment1=0x7f090010;
+        public static final int tvComment2=0x7f090012;
+        public static final int tvCommentMore=0x7f090013;
+        public static final int tvCreatedDateComment=0x7f090006;
+        public static final int tvLikesCount=0x7f09000d;
+        public static final int tvUserComment=0x7f090005;
+        public static final int tvUsername=0x7f090008;
+        public static final int tv_createDate=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_photos=0x7f030000;
@@ -69,6 +71,7 @@ public final class R {
         public static final int action_settings=0x7f060002;
         public static final int all_comments=0x7f06000f;
         public static final int app_name=0x7f060000;
+        public static final int btnClose=0x7f060013;
         public static final int caption_default_text=0x7f060004;
         public static final int clockImg_contentDesc=0x7f060009;
         public static final int createDate_default=0x7f06000c;

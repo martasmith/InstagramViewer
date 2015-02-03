@@ -11,8 +11,9 @@ import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.codepath.instagramviewer.R;
@@ -32,6 +33,7 @@ public class CommentsFragment extends DialogFragment {
     private ArrayList<InstagramPhotoComment> comments;
     private InstagramCommentsAdapter aComments;
     private ListView lvComments;
+    private Button closeBtn;
 
     private String apiUrl;
 
@@ -39,10 +41,12 @@ public class CommentsFragment extends DialogFragment {
         // TODO Auto-generated constructor stub
     }
 
-    public static CommentsFragment newInstance(String photoId) {
+    public static CommentsFragment newInstance(String photoId, String userId, String commentText) {
         CommentsFragment fragment = new CommentsFragment();
         Bundle args = new Bundle();
         args.putString("photoId", photoId);
+        args.putString("userId", userId);
+        args.putString("commentText", commentText);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,14 +55,21 @@ public class CommentsFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comments, container);
         //testDisplay = (TextView) view.findViewById(R.id.tvTest);
-        String photoId = getArguments().getString("photoId", "no id");
+        String photoId = getArguments().getString("photoId", "0");
+        String userId = getArguments().getString("userId");
+        String commentText = getArguments().getString("commentText");
         apiUrl = API_URL_BASE + photoId + API_URL_END;
 
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        //TODO: try to style the title to output username: commentText
+        //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        //getDialog().setStyle(style, theme));
+        getDialog().setTitle("All comments");
 
         lvComments = (ListView) view.findViewById(R.id.lvComments);
+        closeBtn = (Button) view.findViewById(R.id.btnBack);
         createCommentsList();
         fetchPhotoComments();
+        setupBtnClose();
         return view;
     }
 
@@ -98,6 +109,17 @@ public class CommentsFragment extends DialogFragment {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
                 // we need a toast here, that's all!
             }
+        });
+    }
+
+    public void setupBtnClose() {
+        closeBtn.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+
         });
     }
 

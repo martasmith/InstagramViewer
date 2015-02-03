@@ -88,10 +88,9 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
                 @Override
                 public void onClick(View v) {
-                    //Toast.makeText(getContext(), "photo id: " + currentPhoto.getPhotoId(), Toast.LENGTH_SHORT).show();
                     FragmentActivity activity = (FragmentActivity)(getContext());
                     FragmentManager fm = activity.getSupportFragmentManager();
-                    CommentsFragment commentsFragment = CommentsFragment.newInstance(currentPhoto.getPhotoId());
+                    CommentsFragment commentsFragment = CommentsFragment.newInstance(currentPhoto.getPhotoId(),currentPhoto.getUsername(),currentPhoto.getCaption());
                     commentsFragment.show(fm, "fragment_comments");
                 }
 
@@ -102,13 +101,18 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         String timePassed = DateUtils.getRelativeTimeSpanString(currentPhoto.getCreatedTime()*1000, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS)+"";
         // print only digits and 1st char of time unit
         String[] timeParts = timePassed.split(" ");
-        if (timeParts[0].equals("in")) {
-            //in 12 hours
-            tvCreateDate.setText(timeParts[1] + timeParts[2].substring(0,1));
-        } else {
-            //12 hour ago
-            tvCreateDate.setText(timeParts[0] + timeParts[1].substring(0,1));
+        // Apparently, we have some malformed timestrings returned once in a while
+        //TODO: debug by printing full time and each substring for each photo
+        if (timeParts.length >= 2) {
+            if (timeParts[0].equals("in")) {
+                //in 12 hours
+                tvCreateDate.setText(timeParts[1] + timeParts[2].substring(0,1));
+            } else  {
+                //12 hours ago
+                tvCreateDate.setText(timeParts[0] + timeParts[1].substring(0,1));
+            }
         }
+
 
         tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + currentPhoto.getUsername()
                 + "  " + "</b></font>" + "<font color=\"#000000\">" + currentPhoto.getCaption() + "</font>"));

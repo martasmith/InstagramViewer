@@ -20,5 +20,6 @@
     <string name="ivBubble">Comment bubble</string>
     <string name="tvUserComment">UserName: Comment</string>
     <string name="tvCommentTime">10 minutes ago</string>
+    <string name="btnClose">Close</string>
 
 </resources>
